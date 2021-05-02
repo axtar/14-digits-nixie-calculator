@@ -1,4 +1,4 @@
-# 14-digits IN-16 nixie calculator
+# IN-16 14-digits nixie calculator
 ## Warning: nixies need high voltage to glow. If you follow along, you do so at your own risk.
 
 ## Status: under construction, license may change...
