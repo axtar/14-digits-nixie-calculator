@@ -11,7 +11,7 @@ The documents in this repository contain some information and ideas on how to bu
 Features:
 -	two versions: IN-16 and IN-17
 -	14 digits with decimal points and minus sign
--	socket boards for easy replacement of broken nixies
+-	socket boards for easy tube replacement
 -	mechanical keyboard with 35 switches
 -	custom keycap legends and colors
 -	15 math operations - the functionality can be extended by adding a second level of functions to the keys
@@ -21,7 +21,8 @@ Features:
 -	stopwatch mode 
 -	ESP32 based controller board
 -	connectors for PIR, GPS and temperature sensor
--	12V DC input, under, over and reverse input voltage protection and fuse, 
+-	12V DC input voltage
+-	under, over and reverse input protection, fuse
 -	open-source firmware
 -	settings are adjusted using the keyboard, no network connection is needed
 -	3D printed case
