@@ -1,5 +1,5 @@
 # 14-digits nixie calculator
-## Warning: nixies need high voltage to glow. If you follow along, you do so at your own risk.
+## Warning: nixies need high voltage to glow. If you choose to build the calculator, you are doing so at your own risk.
 
 ## Status: under construction, license may change...
 
