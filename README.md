@@ -8,7 +8,7 @@
 The documents in this repository contain some information and ideas on how to build a nixie calculator.<br>
 **Please note that this is not a complete project.** Neither the schematic nor the PCB design for the high voltage power supply will be made available.<br>
 
-Features:
+**Features:**
 -	two versions: IN-16 and IN-17
 -	14 digits with decimal points and minus sign
 -	socket boards for easy tube replacement
@@ -22,7 +22,7 @@ Features:
 -	ESP32 based controller board
 -	connectors for PIR, GPS and temperature sensor
 -	12V DC input voltage
--	under, over and reverse input protection, fuse
+-	under, over and reverse input voltage protection, fuse
 -	open-source firmware
 -	all the settings are adjusted using the keyboard, no network connection is needed
 -	3D printed case
