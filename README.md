@@ -1,7 +1,7 @@
 # 14-digits nixie calculator
-## Warning: nixies need high voltage to glow. If you choose to build the calculator, you are doing so at your own risk.
+## Warning: nixies need high voltage to light up. If you choose to build the calculator, you are doing so at your own risk.
 
-## Status: under construction... <br>The hardware-related documents and files may be placed under a share-alike CC license.
+## Status: under construction... the hardware-related documents and files will most likely be placed under a share-alike CC license...
 
 ![calculator](https://user-images.githubusercontent.com/5904615/116227433-6e9ff400-a754-11eb-8b1b-19379015ba6b.jpg)
 
