@@ -27,7 +27,7 @@ SOFTWARE.
 
 
 
-Hardware related documents and files (the material)
+Hardware-related documents and files (the material)
 ----------------------------
 THE MATERIAL IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED 
 WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
