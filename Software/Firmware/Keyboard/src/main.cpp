@@ -1,5 +1,5 @@
 // Nixie Calculator Keyboard Firmware
-// Version 0.1.3 (beta)
+// Version 0.1.4 (beta)
 
 // Copyright (C) 2021 highvoltglow
 // Licensed under the MIT License
@@ -17,7 +17,7 @@
 // version information
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_REVISION 3
+#define VERSION_REVISION 4
 
 // I2C address
 #define I2C_ADDRESS 2
@@ -99,8 +99,8 @@ void setup()
   initKeyHoldInfo();
 
   // set default values
-  keypad.setHoldTime(1000);
-  keypad.setDebounceTime(10);
+  keypad.setHoldTime(holdTime);
+  keypad.setDebounceTime(debounceTime);
   pendingRequest = -1;
 
   // init I2C connection
@@ -234,13 +234,15 @@ void onGetVersion()
 // set new hold time value
 void onSetHoldTime()
 {
-  keypad.setHoldTime(Wire.read());
+  holdTime = Wire.read();
+  keypad.setHoldTime(holdTime);
 }
 
 // set new debounce time value
 void onSetDebounceTime()
 {
-  keypad.setDebounceTime(Wire.read());
+  debounceTime = Wire.read();
+  keypad.setDebounceTime(debounceTime);
 }
 
 // sets the key repeat interval
