@@ -1,8 +1,8 @@
 # 14-digits nixie calculator
 ## This repository contains some information and ideas for building a nixie calculator.
 ## WARNING: nixies need high voltage to light up. If you choose to build the calculator, you are doing so at your own risk.
-### Status: under construction...<br>
-**Notes:**
+### Status hardware: ready to be reviewed, status software: under construction...
+#### Notes:
 - I am not affiliated with any of the service providers named in this project.<br>
 - **This is not a complete project. Neither the schematic nor the PCB design for the high voltage power supply will be made available.**<br>
 
@@ -22,7 +22,6 @@
 -	ESP32 based controller board
 -	connectors for PIR, GPS and temperature sensor
 -	12V DC input voltage
--	under, over and reverse input voltage protection, fuse
 -	open-source firmware
 -	all the settings are adjusted using the keyboard, no network connection is needed
 -	3D printed case
