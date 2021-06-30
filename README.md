@@ -1,7 +1,7 @@
 # 14-digits nixie calculator
 ## This repository contains some information and ideas for building a nixie calculator.
 ## WARNING: nixies need high voltage to light up. If you choose to build the calculator, you are doing so at your own risk.
-### Status hardware: ready to be reviewed, status software: under construction...
+### Hardware status: ready to be reviewed, software status: under construction...
 #### Notes:
 - I am not affiliated with any of the service providers named in this project.<br>
 - **This is not a complete project. Neither the schematic nor the PCB design for the high voltage power supply will be made available.**<br>
