@@ -1,12 +1,46 @@
 // Nixie Calculator Keyboard Firmware
-// Version 0.1.4 (beta)
+// Version 0.1.5 (beta) - July 18, 2021
 
 // Copyright (C) 2021 highvoltglow
 // Licensed under the MIT License
 
-
 // the keyboard receives commands from the controller using I2C
 // keyboard events are sent to the controller using a serial interface
+
+// commands:
+// CMD_RESET                      -> resets the keyboard
+// CMD_GETVERSION                 -> prepares for version request
+// CMD_SETHOLDTIME                -> sets the time (ms) after a pressed key changes to hold state
+// CMD_SETDEBOUNCETIME            -> sets the debounce time (ms), modify only if you get more events as expected
+// CMD_SETAUTOREPEATINTERVAL      -> sets the time (ms) between autorepeat events if a key is hold
+// CMD_SETFASTAUTOREPEATINTERVAL  -> sets the time (ms) between autorepeat events after the fast autorepeat delay
+// CMD_SETFASTAUTOREPEATDELAY     -> sets the number of autorepeat events before changing to the fast autorepeat interval
+
+// default event sequence:
+// key pressed  -> "pressed" event
+// key released -> "released" event, "idle" event
+
+// event sequence with default values and hold:
+// ------------------------------------------------------------------------------------------------
+// | holdTime = 1000, autoRepeatInterval = 0, fastAutoRepeatInterval = 0, fastAutoRepeatDelay = 0 |
+// ------------------------------------------------------------------------------------------------
+// key pressed  -> "pressed" event
+// time +1000   -> "hold" event
+// ...
+// key released -> "released" event, "idle" event
+
+// event sequence example with auto repeat:
+// ----------------------------------------------------------------------------------------------------
+// | holdTime = 1000, autoRepeatInterval = 500, fastAutoRepeatInterval = 250, fastAutoRepeatDelay = 3 |
+// ----------------------------------------------------------------------------------------------------
+// key pressed  -> "pressed" event
+// time +1000   -> "hold" event, "autorepeat" event
+// time +1500   -> "autorepeat" event
+// time +2000   -> "autorepeat" event
+// time +2250   -> "autorepeat" event (fast)
+// time +2500   -> "autorepeat" event (fast)
+// ...
+// key released -> "released" event, "idle" event
 
 // includes
 #include <Arduino.h>
@@ -14,10 +48,12 @@
 #include <Keypad.h>
 #include <Wire.h>
 
+// #define SERIALDEBUG
+
 // version information
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_REVISION 4
+#define VERSION_REVISION 5
 
 // I2C address
 #define I2C_ADDRESS 2
@@ -29,6 +65,8 @@
 #define CMD_SETHOLDTIME 3
 #define CMD_SETDEBOUNCETIME 4
 #define CMD_SETAUTOREPEATINTERVAL 5
+#define CMD_SETFASTAUTOREPEATINTERVAL 6
+#define CMD_SETFASTAUTOREPEATDELAY 7
 
 // keys arranged in 7 x 5 matrix
 #define ROWS ((const byte)7)
@@ -40,12 +78,13 @@
 
 // this is an additional KeyState used
 // for generated repeat events
-#define KEYSTATE_AUTOREPEAT 4;
+#define KEYSTATE_AUTOREPEAT 4
 
 typedef struct
 {
   uint8_t keyCode;
   unsigned long holdTimestamp;
+  uint autoRepeatCount;
 } HOLD_INFO;
 
 // key values
@@ -72,7 +111,9 @@ HOLD_INFO keyHoldInfo[LIST_MAX];
 
 volatile uint holdTime = 1000;
 volatile uint debounceTime = 10;
-volatile uint autoRepeatInterval = 0;
+volatile uint autoRepeatInterval = 500;
+volatile uint fastAutoRepeatInterval = 250;
+volatile uint fastAutoRepeatDelay = 5;
 volatile int pendingRequest;
 
 // forward declarations
@@ -84,13 +125,18 @@ void onGetVersion();
 void onSetHoldTime();
 void onSetDebounceTime();
 void onSetAutoRepeatInterval();
+void onSetFastAutoRepeatInterval();
+void onSetFastAutoRepeatDelay();
+
 void deleteKeyHoldInfo(uint8_t keyCode);
 void setKeyHoldInfo(uint8_t keyCode);
 void initKeyHoldInfo();
 
 void setup()
 {
-  //Serial.begin(9600);
+#ifdef SERIALDEBUG
+  Serial.begin(9600);
+#endif
 
   // init serial connection
   kSerial.begin(9600);
@@ -109,7 +155,6 @@ void setup()
   Wire.onRequest(requestEvent);
 }
 
-
 void loop()
 {
   uint8_t buffer[2];
@@ -121,6 +166,18 @@ void loop()
     {
       if (keypad.key[i].stateChanged)
       {
+
+#ifdef SERIALDEBUG
+        Serial.print("Millis: ");
+        Serial.print(millis());
+        Serial.print(" ");
+        Serial.print("Key: ");
+        Serial.print((int)keypad.key[i].kchar);
+        Serial.print(" ");
+        Serial.print("State: ");
+        Serial.println(keypad.key[i].kstate);
+#endif
+
         // state changed, send key and state
         buffer[0] = keypad.key[i].kchar;
         buffer[1] = keypad.key[i].kstate;
@@ -152,15 +209,50 @@ void loop()
     unsigned long currentMillis = millis();
     for (uint8_t i = 0; i < LIST_MAX; i++)
     {
+
       if (keyHoldInfo[i].keyCode != 0)
       {
-        // check if it is time to generate a key repeat event
-        if (currentMillis - keyHoldInfo[i].holdTimestamp > autoRepeatInterval)
+        bool genEvent = false;
+        if ((keyHoldInfo[i].autoRepeatCount < fastAutoRepeatDelay) || (fastAutoRepeatDelay == 0))
         {
+          // check if it is time to generate a key repeat event
+          if (currentMillis - keyHoldInfo[i].holdTimestamp > autoRepeatInterval)
+          {
+            genEvent = true;
+          }
+        }
+        else
+        {
+          // check if it is time to generate a key fast repeat event
+          if (fastAutoRepeatInterval > 0)
+          {
+            if (currentMillis - keyHoldInfo[i].holdTimestamp > fastAutoRepeatInterval)
+            {
+              genEvent = true;
+            }
+          }
+        }
+        if (genEvent)
+        {
+
+#ifdef SERIALDEBUG
+        Serial.print("Millis: ");
+        Serial.print(millis());
+        Serial.print(" ");
+        Serial.print("Key: ");
+        Serial.print(keyHoldInfo[i].keyCode);
+        Serial.print(" ");
+        Serial.print("State: ");
+        Serial.println(KEYSTATE_AUTOREPEAT);
+#endif
           buffer[0] = keyHoldInfo[i].keyCode;
           buffer[1] = KEYSTATE_AUTOREPEAT;
           kSerial.write(buffer, 2);
           keyHoldInfo[i].holdTimestamp = currentMillis;
+          if (fastAutoRepeatInterval > 0)
+          {
+            keyHoldInfo[i].autoRepeatCount++;
+          }
         }
       }
     }
@@ -196,6 +288,14 @@ void receiveEvent(int count)
 
       case CMD_SETAUTOREPEATINTERVAL:
         onSetAutoRepeatInterval();
+        break;
+
+      case CMD_SETFASTAUTOREPEATINTERVAL:
+        onSetFastAutoRepeatInterval();
+        break;
+
+      case CMD_SETFASTAUTOREPEATDELAY:
+        onSetFastAutoRepeatDelay();
         break;
 
       default:
@@ -253,6 +353,19 @@ void onSetAutoRepeatInterval()
   initKeyHoldInfo();
 }
 
+// sets the key fast repeat interval
+// set to 0 to disable fast auto repeat
+void onSetFastAutoRepeatInterval()
+{
+  fastAutoRepeatInterval = Wire.read();
+}
+
+// sets the delay before changing to fast repeat interval
+void onSetFastAutoRepeatDelay()
+{
+  fastAutoRepeatDelay = Wire.read();
+}
+
 // deletes the hold timestamp for this key
 void deleteKeyHoldInfo(uint8_t keyCode)
 {
@@ -262,6 +375,7 @@ void deleteKeyHoldInfo(uint8_t keyCode)
     {
       keyHoldInfo[i].keyCode = 0;
       keyHoldInfo[i].holdTimestamp = 0;
+      keyHoldInfo[i].autoRepeatCount = 0;
       break;
     }
   }
@@ -276,6 +390,7 @@ void setKeyHoldInfo(uint8_t keyCode)
     {
       keyHoldInfo[i].keyCode = keyCode;
       keyHoldInfo[i].holdTimestamp = millis() + autoRepeatInterval;
+      keyHoldInfo[i].autoRepeatCount = 0;
       break;
     }
   }
@@ -288,5 +403,6 @@ void initKeyHoldInfo()
   {
     keyHoldInfo[i].keyCode = 0;
     keyHoldInfo[i].holdTimestamp = 0;
+    keyHoldInfo[i].autoRepeatCount = 0;
   }
 }
