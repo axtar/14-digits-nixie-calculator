@@ -6,10 +6,15 @@
 
 #
 ## Firmware/Keyboard
+### Version 0.1.5 (beta) - July 18, 2021
+#### Enhancements:
+- Added fast autorepeat feature
+
+### Version 0.1.4 (beta) - June 28, 2021
+#### Fixes:
+- Minor fixes
+
 ### Version 0.1.3 (beta) - June 26, 2021
 #### Notes:
 - First published version
 
-### Version 0.1.4 (beta) - June 28, 2021
-### Fixes:
-- Minor fixes
