@@ -1,5 +1,5 @@
 // Nixie Calculator Keyboard Firmware
-// Version 0.1.5 (beta) - July 18, 2021
+// Version 0.1.6 (beta) - July 19, 2021
 
 // Copyright (C) 2021 highvoltglow
 // Licensed under the MIT License
@@ -53,7 +53,7 @@
 // version information
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_REVISION 5
+#define VERSION_REVISION 6
 
 // I2C address
 #define I2C_ADDRESS 2
@@ -111,9 +111,9 @@ HOLD_INFO keyHoldInfo[LIST_MAX];
 
 volatile uint holdTime = 1000;
 volatile uint debounceTime = 10;
-volatile uint autoRepeatInterval = 500;
-volatile uint fastAutoRepeatInterval = 250;
-volatile uint fastAutoRepeatDelay = 5;
+volatile uint autoRepeatInterval = 0;
+volatile uint fastAutoRepeatInterval = 0;
+volatile uint fastAutoRepeatDelay = 0;
 volatile int pendingRequest;
 
 // forward declarations
