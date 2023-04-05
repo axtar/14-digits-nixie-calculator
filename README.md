@@ -16,7 +16,7 @@
 -	4 versions: IN-12, IN-16, IN-17 and B-5870
 -	14 digits with decimal points and minus sign
 -	easy nixie replacement
-- LED backlight
+- LED backlighting/underlighting
 -	mechanical keyboard with 35 switches
 -	custom keycap legends and colors
 -	15 math operations - the functionality can be extended by adding a second level of functions
