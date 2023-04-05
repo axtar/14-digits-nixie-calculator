@@ -10,7 +10,7 @@
 - **I'm not affiliated with any of the service providers named in this project.**
 #### Status: 
 - Software: coming soon
-- Hardware: ready to review
+- Hardware: ready to be reviewed
 
 **Features:**
 -	4 versions: IN-12, IN-16, IN-17 and B-5870
