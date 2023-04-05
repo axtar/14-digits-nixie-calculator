@@ -2,9 +2,10 @@
 ## This repository contains some information and ideas for building a nixie calculator.
 <img align="left" width="77" src="Images/warning_sign_small.png" />
 
-## WARNING: nixies need high voltage to light up. If you choose to build or use the calculator, you are doing so at your own risk.
+## WARNING: nixies need high voltage to light up. If you choose to build or use the calculator, you are doing so at your own risk. 
+
 #### Notes:
-- **This repository does not contain a complete project design. The design of the high voltage power supply (170V / ≥45mA) is not provided.**
+- **This repository does not contain a complete project design. The design of the high voltage power supply (170V / ≥45mA) is not provided. See [this](Docs/High%20Voltage%20Power%20Supply.pdf) document for options.**
 - **Be aware that I'm just an electronics hobbyist and nixie enthusiast. However, this repository is only intended for suitable qualified electronics engineers who are familiar with nixie tubes.**
 - **Please read all documents in [Docs](Docs) before deciding whether to build the calculator.**
 - **I'm not affiliated with any of the service providers named in this project.**
