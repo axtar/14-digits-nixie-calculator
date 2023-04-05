@@ -12,8 +12,6 @@
 - Software: under construction
 - Hardware: under construction
 
-![calcs](https://user-images.githubusercontent.com/5904615/199827851-a92c9bf3-371e-497a-9c12-2685fdac637e.jpg)
-
 **Features:**
 -	4 versions: IN-12, IN-16, IN-17 and B-5870
 -	14 digits with decimal points and minus sign
