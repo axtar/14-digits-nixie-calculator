@@ -9,8 +9,8 @@
 - **Please read all documents in [Docs](Docs) before deciding whether to build the calculator.**
 - **I'm not affiliated with any of the service providers named in this project.**
 #### Status: 
-- Software: under construction
-- Hardware: under construction
+- Software: coming soon
+- Hardware: ready to review
 
 **Features:**
 -	4 versions: IN-12, IN-16, IN-17 and B-5870
