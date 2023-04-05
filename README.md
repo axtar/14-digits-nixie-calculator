@@ -30,3 +30,13 @@
 -	no network connection is needed (all the settings are adjusted using the keyboard)
 -	3D printed case
 -	open-source firmware
+#### IN-12 version
+![IN-12](Images/Calculators/IN-12_version.jpg)
+#### IN-16 version
+![IN-16](Images/Calculators/IN-16_version.jpg)
+#### B-5870 version
+![B-5870](Images/Calculators/B-5870_version.jpg)
+#### IN-17 version
+![IN-17](Images/Calculators/IN-17_version.jpg)
+#### All versions have RGB lighting
+![IN-16](Images/Calculators/IN-17_version_led_on.jpg)
