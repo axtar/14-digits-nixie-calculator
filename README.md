@@ -10,7 +10,7 @@
 - **Please read all documents in [Docs](Docs) before deciding whether to build the calculator.**
 - **I'm not affiliated with any of the service providers named in this project.**
 #### Status: 
-- Software: coming soon
+- Software: work in progress
 - Hardware: ready to be reviewed
 
 **Features:**
