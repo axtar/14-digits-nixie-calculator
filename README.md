@@ -5,10 +5,10 @@
 ## WARNING: nixies need high voltage to light up. If you choose to build or use the calculator, you are doing so at your own risk. 
 
 #### Notes:
-- **This repository does not contain a complete project design. The design of the high voltage power supply (170V / ≥45mA) is not provided. See [this](Docs/High%20Voltage%20Power%20Supply.pdf) document for options.**
+- **This repository does not contain a complete project design. The design of the high voltage power supply (170V / ≥45mA) is not provided. See this [document](Docs/High%20Voltage%20Power%20Supply.pdf) for options.**
 - **Be aware that I'm just an electronics hobbyist and nixie enthusiast. However, this repository is only intended for suitable qualified electronics engineers who are familiar with nixie tubes.**
 - **Please read all documents in [Docs](Docs) before deciding whether to build the calculator.**
-- **I'm not affiliated with any of the service providers named in this project.**
+- **I'm not affiliated with any of the service providers mentioned in this project.**
 #### Status: 
 - Software: work in progress
 - Hardware: ready to be reviewed
@@ -22,12 +22,13 @@
 -	custom keycap legends and colors
 -	15 math operations - the functionality can be extended by adding a second level of functions
 -	5 memory operations
--	RTC with battery
+-	RTC with battery backup
 -	clock mode
 -	stopwatch mode 
+-	timer mode
 -	ESP32 based controller board
 -	PIR, GPS and temperature sensor module
--	12V DC input voltage
+-	works with a standard DC 12V/2A regulated power supply (wall wart)
 -	no network connection is needed (all the settings are adjusted using the keyboard)
 -	3D printed case
 -	open-source firmware
