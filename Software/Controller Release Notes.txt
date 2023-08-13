@@ -1,0 +1,24 @@
+Nixie calculator controller firmware
+====================================
+
+Version: 	0.1.3
+Status:	 	Alpha
+Date: 		first published version
+
+
+Known issues  	
+------------
+
++ Missing functionality
+ - Cathode poisoning prevention
+ - Zero padding mode
+ - Display flickering mode
+ - LED lighting
+ - Keyboard shortcuts
+
++ Bugs 
+ - Some setting changes are ignored until the calculator is restartet
+ - Missing error handling for the pow operation
+
++ Pending improvments
+ - make digit scrolling asynchronous 

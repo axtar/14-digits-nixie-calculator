@@ -1,0 +1,8 @@
+Nixie calculator keyboard firmware
+==================================
+
+Version: 	0.9.1
+Status:	 	Beta
+Date: 		first published version
+
+Known Issues:
