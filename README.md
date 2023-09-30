@@ -1,5 +1,5 @@
-# 14-digit nixie calculator #
-## This repository contains some information and ideas for building a nixie calculator. ##
+<h1> 14-digit nixie calculator </h1>
+<h2> This repository contains some information and ideas for building a nixie calculator. </h2>
 <img align="left" width="77" src="Images/warning_sign_small.png" />
 
 ## WARNING: nixies need high voltage to light up. If you choose to build or use the calculator, you are doing so at your own risk. ##
