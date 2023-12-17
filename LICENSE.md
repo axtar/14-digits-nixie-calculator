@@ -35,7 +35,7 @@ This is a human-readable summary of (and not a substitute for) the [license](htt
 
 You are free to:
 
-**Share** — copy and redistribute the material in any medium or format
+**Share** — copy and redistribute the material in any medium or format for any purppose, even commercially.
 
 **Adapt** — remix, transform, and build upon the material
 for any purpose, even commercially.
