@@ -2,7 +2,7 @@
   Rev1-> initial revision
 
 + Nixie Calculator Controller
-  Rev1a -> 1Hz or 32kHz RTC signal connected now to GPIO 36 of the the ESP32
+  Rev1a -> 1Hz or 32kHz RTC signal connected now to GPIO 36 of the ESP32
 
 + Nixie Calculator IN-12 Driver
   Rev1a -> a small cut-out was made on the board to facilitate cable routing
