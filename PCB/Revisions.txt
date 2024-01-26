@@ -6,4 +6,4 @@
            connected now to the ESP32
 
 + Nixie Calculator IN-12 Driver
-  Rev1a -> added small board cut-out
+  Rev1a -> added small cut-out to the board to make cable routing easier
