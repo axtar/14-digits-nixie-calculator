@@ -1,0 +1,9 @@
++ All PCBs
+  Rev1-> initial revision
+
++ Nixie Calculator Controller
+  Rev1a -> 1Hz or 32kHz signal provided by the RTC chip
+           connected now to the ESP32
+
++ Nixie Calculator IN-12 Driver
+  Rev1a -> added small board cut-out
